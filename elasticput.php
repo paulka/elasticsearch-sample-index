@@ -1,20 +1,22 @@
 <?php
 // CONFIGURE BELOW
 $esHostProtocol = 'http'; // could be https, but may require changes to CURL opts?
-$esHost = 'elasticsearch.platform.staging.posrip.com';
+$esHost = 'localhost';
 $esPort = '9200';
 $indexName = 'sk-loadtest-001';
 $docType = 'birdstrike';
 $documentId = 1;
 
 // DO NOT EDIT BELOW THIS LINE!
+ini_set("auto_detect_line_endings", true);
+
 $row = 1;
 if (($handle = fopen('indexme.csv', "r")) !== FALSE) {
-    while (($data = fgetcsv($handle, 300, ",")) !== FALSE) {
+    while (($data = fgetcsv($handle, 0, ",")) !== FALSE) {
         $num = count($data);
         $row++;
         $acrafttype = $data[0];
-	$airportname = $data[1];
+        $airportname = $data[1];
         $alt = $data[2];
         $craftmodel = $data[3];
         $numberstruck = $data[4];
@@ -30,7 +32,7 @@ if (($handle = fopen('indexme.csv', "r")) !== FALSE) {
         $airline = $data[14];
         $originstate = $data[15];
         $flightpahse = $data[16];
-	$conditions = $data[17];
+        $conditions = $data[17];
         $wildliferemainscollected = $data[18];
         $wildlifesenttosmithsonian = $data[19];
         $remarks = $data[20];
@@ -72,8 +74,8 @@ if (($handle = fopen('indexme.csv', "r")) !== FALSE) {
               "origin_state" => $originstate,
               "when_flight_phase" => $flightpahse,
               "conditions_precipitation" => $conditions,
-              "wildlife_collected" => $wildliferemainscollecte,
-              "wildlife_sent_to_smithsonian" => $wildlifesenttosmithsonia,
+              "wildlife_collected" => $wildliferemainscollected,
+              "wildlife_sent_to_smithsonian" => $wildlifesenttosmithsonian,
               "remarks" => $remarks,
               "reported_date" => $reporteddate,
               "wildlife_size" => $wildlifesize,
@@ -82,7 +84,7 @@ if (($handle = fopen('indexme.csv', "r")) !== FALSE) {
               "when_time" => $time,
               "when_time_of_day" => $timeoday,
               "pilot_warned" => $pilotwarned,
-              "cost_aircraft_hours_out_of_service" => $aircraftoutofservicehour,
+              "cost_aircraft_hours_out_of_service" => $aircraftoutofservicehours,
               "cost_other" => $costadjusted,
               "cost_repair" => $costrepair,
               "cost_total" => $costtotal,
