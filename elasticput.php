@@ -17,7 +17,7 @@ if (($handle = fopen('indexme.csv', "r")) !== FALSE) {
 	$airportname = $data[1];
         $alt = $data[2];
         $craftmodel = $data[3];
-        $numberstruck = $dat[4];
+        $numberstruck = $data[4];
         $effect = $data[5];
         $effectother = $data[6];
         $location = $data[7];
