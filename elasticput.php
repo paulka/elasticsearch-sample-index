@@ -25,7 +25,8 @@ if (($handle = fopen('indexme.csv', "r")) !== FALSE) {
         $location = $data[7];
         $flightnumber = $data[8];
         $date = $data[9];
-        $recid = $data[10];
+#        $recid = $data[10];
+        $recid = mt_rand();
         $effectdamage = $data[11];
         $locationother= $data[12];
         $enginecount = $data[13];
@@ -96,7 +97,7 @@ if (($handle = fopen('indexme.csv', "r")) !== FALSE) {
         );
         $jsonData = json_encode($json_data);
 
-        $endPointURL = $esHostProtocol . '://' . $esHost . ':' . $esPort . '/' . $indexName . '/' . $docType . '/' . $documentId++;
+        $endPointURL = $esHostProtocol . '://' . $esHost . ':' . $esPort . '/' . $indexName . '/' . $docType . '/' . $recid;
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $endPointURL);
